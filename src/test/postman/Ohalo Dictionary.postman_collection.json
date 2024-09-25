@@ -1,0 +1,490 @@
+{
+	"info": {
+		"_postman_id": "980a4782-99da-47a8-9cf0-fe34cd63b525",
+		"name": "Ohalo Dictionary",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6856946"
+	},
+	"item": [
+		{
+			"name": "Create 1st dictionary",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.environment.set(\"dictionary1_id\", jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"words\": [\"Jack\", \"boy\"],\n  \"name\": \"My first dictionary\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7007/v1/dictionary",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7007",
+					"path": [
+						"v1",
+						"dictionary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create 2nd dictionary",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.environment.set(\"dictionary2_id\", jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"words\": [\"Jill\", \"girl\"],\n   \"name\": \"My second dictionary\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7007/v1/dictionary",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7007",
+					"path": [
+						"v1",
+						"dictionary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get 1st dictionary",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Words are correct\", function () {",
+							"    var words = jsonData.words;",
+							"",
+							"    pm.expect(words).to.exist;",
+							"    pm.expect(words.length).to.eql(2);",
+							"    pm.expect(words[0]).to.eql(\"Jack\");",
+							"    pm.expect(words[1]).to.eql(\"boy\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7007/v1/dictionary/{{dictionary1_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7007",
+					"path": [
+						"v1",
+						"dictionary",
+						"{{dictionary1_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get 2nd dictionary",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Words are correct\", function () {",
+							"    var words = jsonData.words;",
+							"",
+							"  ",
+							"    pm.expect(words).to.exist;",
+							"    pm.expect(words.length).to.eql(2);",
+							"    pm.expect(words[0]).to.eql(\"Jill\");",
+							"    pm.expect(words[1]).to.eql(\"girl\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7007/v1/dictionary/{{dictionary2_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7007",
+					"path": [
+						"v1",
+						"dictionary",
+						"{{dictionary2_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all dictionaries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7007/v1/dictionary",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7007",
+					"path": [
+						"v1",
+						"dictionary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add words to 1st dictionary",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Words are correct\", function () {",
+							"    var words = jsonData.words;",
+							"",
+							"    pm.expect(words).to.exist;",
+							"    pm.expect(words.length).to.eql(4);",
+							"    pm.expect(words[0]).to.eql(\"potato\");",
+							"    pm.expect(words[1]).to.eql(\"tomato\");",
+							"    pm.expect(words[2]).to.eql(\"Jack\");",
+							"    pm.expect(words[3]).to.eql(\"boy\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"wordsToAdd\": [\"potato\", \"tomato\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7007/v1/dictionary/{{dictionary1_id}}/add-words",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7007",
+					"path": [
+						"v1",
+						"dictionary",
+						"{{dictionary1_id}}",
+						"add-words"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove words from 1st dictionary",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Words are correct\", function () {",
+							"    var words = jsonData.words;",
+							"",
+							"    pm.expect(words).to.exist;",
+							"    pm.expect(words.length).to.eql(2);",
+							"    pm.expect(words[0]).to.eql(\"potato\");",
+							"    pm.expect(words[1]).to.eql(\"boy\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"wordsToRemove\": [\"Jack\", \"tomato\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7007/v1/dictionary/{{dictionary1_id}}/remove-words",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7007",
+					"path": [
+						"v1",
+						"dictionary",
+						"{{dictionary1_id}}",
+						"remove-words"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete 2nd dictionary",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7007/v1/dictionary/{{dictionary2_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7007",
+					"path": [
+						"v1",
+						"dictionary",
+						"{{dictionary2_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Submit Search Job",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.environment.set(\"job1_id\", jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"dictionaryId\": \"{{dictionary1_id}}\",\n    \"inputText\": \"Jack and Jill went up the hill\",\n    \"caseSensitive\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7007/v1/job/search/submit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7007",
+					"path": [
+						"v1",
+						"job",
+						"search",
+						"submit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve Search Job",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Results are correct\", function () {",
+							"    var results = jsonData.results;",
+							"    pm.expect(results).to.exist;",
+							"",
+							"    pm.expect(results.Jack.length).to.eql(3);",
+							"    pm.expect(results.boy.length).to.eql(0);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7007/v1/job/{{job1_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7007",
+					"path": [
+						"v1",
+						"job",
+						"{{job1_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

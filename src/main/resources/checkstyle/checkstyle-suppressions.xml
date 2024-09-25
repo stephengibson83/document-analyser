@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<suppressions>
+    <!-- None of the code is for an external users, so we don't need Javadoc. By convention we will add method comments to interfaces, and at some point in the future we may use swagger for documenting -->
+    <suppress checks="MissingJavadocType" files=".*"/>
+    <suppress checks="MissingJavadocMethod" files=".*"/>
+    <suppress checks="Indentation" files=".*Test.java"/>
+    <suppress checks="MemberName" files="WebApiUtil.java"/>
+    <suppress checks="AbbreviationAsWordInName" files=".*IT.java"/>
+</suppressions>
