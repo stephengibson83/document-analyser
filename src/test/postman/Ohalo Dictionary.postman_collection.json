@@ -230,7 +230,7 @@
 			"response": []
 		},
 		{
-			"name": "Add words to 1st dictionary",
+			"name": "Add words to 2nd dictionary",
 			"event": [
 				{
 					"listen": "test",
@@ -249,8 +249,8 @@
 							"    pm.expect(words.length).to.eql(4);",
 							"    pm.expect(words[0]).to.eql(\"potato\");",
 							"    pm.expect(words[1]).to.eql(\"tomato\");",
-							"    pm.expect(words[2]).to.eql(\"Jack\");",
-							"    pm.expect(words[3]).to.eql(\"boy\");",
+							"    pm.expect(words[2]).to.eql(\"Jill\");",
+							"    pm.expect(words[3]).to.eql(\"girl\");",
 							"});"
 						],
 						"type": "text/javascript",
@@ -271,7 +271,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:7007/v1/dictionary/{{dictionary1_id}}/add-words",
+					"raw": "http://localhost:7007/v1/dictionary/{{dictionary2_id}}/add-words",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -280,7 +280,7 @@
 					"path": [
 						"v1",
 						"dictionary",
-						"{{dictionary1_id}}",
+						"{{dictionary2_id}}",
 						"add-words"
 					]
 				}
@@ -288,7 +288,7 @@
 			"response": []
 		},
 		{
-			"name": "Remove words from 1st dictionary",
+			"name": "Remove words from 2nd dictionary",
 			"event": [
 				{
 					"listen": "test",
@@ -306,7 +306,7 @@
 							"    pm.expect(words).to.exist;",
 							"    pm.expect(words.length).to.eql(2);",
 							"    pm.expect(words[0]).to.eql(\"potato\");",
-							"    pm.expect(words[1]).to.eql(\"boy\");",
+							"    pm.expect(words[1]).to.eql(\"girl\");",
 							"});"
 						],
 						"type": "text/javascript",
@@ -319,7 +319,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"wordsToRemove\": [\"Jack\", \"tomato\"]\n}",
+					"raw": "{\n    \"wordsToRemove\": [\"Jill\", \"tomato\"]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -327,7 +327,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:7007/v1/dictionary/{{dictionary1_id}}/remove-words",
+					"raw": "http://localhost:7007/v1/dictionary/{{dictionary2_id}}/remove-words",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -336,7 +336,7 @@
 					"path": [
 						"v1",
 						"dictionary",
-						"{{dictionary1_id}}",
+						"{{dictionary2_id}}",
 						"remove-words"
 					]
 				}
@@ -350,8 +350,6 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var jsonData = pm.response.json();",
-							"",
 							"pm.test(\"Status code is 204\", function () {",
 							"    pm.response.to.have.status(204);",
 							"});"
@@ -405,7 +403,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"dictionaryId\": \"{{dictionary1_id}}\",\n    \"inputText\": \"Jack and Jill went up the hill\",\n    \"caseSensitive\": true\n}",
+					"raw": "{\n    \"dictionaryId\": \"{{dictionary1_id}}\",\n    \"inputText\": \"Jack and Jill went up the hill To fetch a pail of water. Jack fell down and broke his crown, And Jill came tumbling after. Up Jack got, and home did trot, As fast as he could caper, He went to bed to mend his head, With vinegar and brown paper.\",\n    \"caseSensitive\": true\n}",
 					"options": {
 						"raw": {
 							"language": "json"
